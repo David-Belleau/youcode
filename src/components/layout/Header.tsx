@@ -1,4 +1,3 @@
-// src/components/layout/Header.tsx
 import { SiteConfig } from '@/lib/site-config';
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
