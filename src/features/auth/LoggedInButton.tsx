@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   AlertDialog,
@@ -8,20 +8,22 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+} from "@/components/ui/alert-dialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Loader } from '@/components/ui/loader';
-import { LoggedInButtonProps } from '@/utils/types';
-import { useMutation } from '@tanstack/react-query';
-import { LogOut } from 'lucide-react';
-import { signOut } from 'next-auth/react';
+} from "@/components/ui/dropdown-menu";
+import { Loader } from "@/components/ui/loader";
+import { LoggedInButtonProps } from "@/utils/types";
+import { useMutation } from "@tanstack/react-query";
+import { LogOut, User2 } from "lucide-react";
+import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 export const LoggedInButton = (props: LoggedInButtonProps) => {
   const mutation = useMutation({
@@ -40,7 +42,7 @@ export const LoggedInButton = (props: LoggedInButtonProps) => {
               {props.user.image && (
                 <AvatarImage
                   src={props.user.image}
-                  alt={props.user.name ?? 'user picture'}
+                  alt={props.user.name ?? "user picture"}
                 />
               )}
             </Avatar>
@@ -48,16 +50,23 @@ export const LoggedInButton = (props: LoggedInButtonProps) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <AlertDialogTrigger asChild>
+          <DropdownMenuItem asChild>
+            <Link href="/account">
+              <User2 className="mr-2" size={12} />
+              My account
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
             <DropdownMenuItem>
               <LogOut className="mr-2" size={12} />
               Logout
             </DropdownMenuItem>
-          </AlertDialogTrigger>
         </DropdownMenuContent>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you sure you want to logout?</AlertDialogTitle>
+            <AlertDialogTitle>
+              Are you sure you want to logout?
+            </AlertDialogTitle>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel asChild>
