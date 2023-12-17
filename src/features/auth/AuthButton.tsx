@@ -1,15 +1,13 @@
-import { getAuthSession } from "@/lib/auth";
+import { getRequiredAuthSession } from "@/lib/auth";
 import { LoggedInButton } from "./LoggedInButton";
 import { LogInButton } from "./LogInButton";
 
 export const AuthButton = async () => {
-  const session = await getAuthSession();
+  const session = await getRequiredAuthSession();
 
-  const user = session?.user;
-
-  if (!user) {
+  if (!session.user) {
     return <LogInButton />;
   }
 
-  return <LoggedInButton user={user} />;
+  return <LoggedInButton user={session.user} />;
 };
