@@ -9,14 +9,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { LogOutButton } from "@/features/auth/LogOutButton";
-import { getAuthSession } from "@/lib/auth";
+import { getRequiredAuthSession } from "@/lib/auth";
 import Link from "next/link";
 
 export default async function MyAccount() {
-  const session = await getAuthSession();
-  const user = session?.user;
+  const session = await getRequiredAuthSession();
 
-  if (!user) {
+  if (!session) {
     throw new Error("No user found !");
   }
 
@@ -24,12 +23,14 @@ export default async function MyAccount() {
     <Card className="m-auto mt-4 max-w-lg">
       <CardHeader className="flex flex-row gap-4 space-y-0">
         <Avatar>
-          <AvatarFallback>{user?.email?.[0]}</AvatarFallback>
-          {user?.image && <AvatarImage src={user?.image} alt="user image" />}
+          <AvatarFallback>{session.user?.email?.[0]}</AvatarFallback>
+          {session.user?.image && (
+            <AvatarImage src={session.user?.image} alt="user image" />
+          )}
         </Avatar>
         <div className="flex flex-col gap-1">
-          <CardTitle>{user?.email}</CardTitle>
-          <CardDescription>{user?.name}</CardDescription>
+          <CardTitle>{session.user?.email}</CardTitle>
+          <CardDescription>{session.user?.name}</CardDescription>
         </div>
       </CardHeader>
       <CardContent className="flex flex-col gap-2">
