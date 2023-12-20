@@ -45,7 +45,7 @@ export default async function CoursesPage() {
               </TableHeader>
               <TableBody>
                 {courses.map((course) => (
-                  <TableRow>
+                  <TableRow key={course.id}>
                     <TableCell>
                       <Avatar className="rounded">
                         <AvatarFallback>{course.name[0]}</AvatarFallback>
