@@ -8,9 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getRequiredAuthSession } from "@/lib/auth";
 import { notFound } from "next/navigation";
 import { getCourseLessons } from "./lessons.query";
-import { Typography } from "@/components/ui/typography";
 import {  } from '@prisma/client';
-import { Badge } from "@/components/ui/badge";
 import { LessonItem } from "./LessonItem";
 
 export default async function CourseLessonsPage({
