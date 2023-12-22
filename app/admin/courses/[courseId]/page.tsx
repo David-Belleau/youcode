@@ -19,7 +19,7 @@ import { Typography } from "@/components/ui/typography";
 import { getRequiredAuthSession } from "@/lib/auth";
 import Link from "next/link";
 import { PaginationButton } from "../../../../src/features/pagination/PaginationButton";
-import { getCourse } from "./course.query";
+import { getAdminCourse } from "./course.query";
 
 export default async function CoursePage({
   params,
@@ -33,7 +33,7 @@ export default async function CoursePage({
   const page = Number(searchParams.page ?? 1);
   const session = await getRequiredAuthSession();
 
-  const course = await getCourse({
+  const course = await getAdminCourse({
     courseId: params.courseId,
     userId: session.user.id,
     userPage: page,
