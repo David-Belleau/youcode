@@ -7,7 +7,7 @@ import {
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
 
-export default async function CoursesPage() {
+export default async function MyCoursesPage() {
   return (
     <Layout>
       <LayoutHeader>
