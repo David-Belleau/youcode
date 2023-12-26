@@ -1,17 +1,18 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Typography } from '@/components/ui/typography';
-import Link from 'next/link';
-import { CoursesCard } from './course.query';
+import { CourseType } from './course.query';
+import { LessonItem } from './lessons/[lessonId]/LessonItem';
+import { MarkdownProse } from '@/features/mdx/MarkdownProse';
 
-export type CourseCardProps = {
-  course: CoursesCard;
+export type CourseProps = {
+  course: CourseType;
 };
 
-export const CourseCard = ({course}: CourseCardProps) => {
+export const Course = ({ course }: CourseProps) => {
   return (
-    <Link href={`/courses/${course.id}`}>
-      <Card className="hover:bg-accent">
+    <div className="flex flex-col items-start gap-4 lg:flex-row">
+      <Card className="flex-[2] hover:bg-accent">
         <CardHeader className="flex flex-row gap-3 space-y-0">
           <Avatar className="h-14 w-14 rounded">
             <AvatarFallback>{course.name[0]}</AvatarFallback>
@@ -32,7 +33,20 @@ export const CourseCard = ({course}: CourseCardProps) => {
             </div>
           </div>
         </CardHeader>
+        <CardContent>
+          <MarkdownProse markdown={course.presentation} />
+        </CardContent>
       </Card>
-    </Link>
+      <Card className="flex-1">
+        <CardHeader>
+          <CardTitle>Lessons</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-2">
+          {course.lessons.map((lesson) => (
+            <LessonItem lesson={lesson} key={lesson.id} />
+          ))}
+        </CardContent>
+      </Card>
+    </div>
   );
 };
