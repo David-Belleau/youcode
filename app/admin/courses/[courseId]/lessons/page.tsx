@@ -9,7 +9,7 @@ import { getRequiredAuthSession } from "@/lib/auth";
 import { notFound } from "next/navigation";
 import { getCourseLessons } from "./lessons.query";
 import {  } from '@prisma/client';
-import { LessonItem } from "./LessonItem";
+import { AdminLessonItem } from "./AdminLessonItem";
 
 export default async function CourseLessonsPage({
   params,
@@ -41,7 +41,7 @@ export default async function CourseLessonsPage({
           </CardHeader>
           <CardContent className="flex flex-col gap-2">
             {course.lessons.map((lesson) => (
-              <LessonItem key={lesson.id} lesson={lesson} />
+              <AdminLessonItem key={lesson.id} lesson={lesson} />
             ))}
           </CardContent>
         </Card>
