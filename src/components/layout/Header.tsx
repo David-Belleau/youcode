@@ -4,7 +4,6 @@ import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Typography } from "@/components/ui/typography";
 import Image from "next/image";
 import { AuthButton } from "../../features/auth/AuthButton";
-import { buttonVariants } from "../ui/button";
 
 export function Header() {
   return (
