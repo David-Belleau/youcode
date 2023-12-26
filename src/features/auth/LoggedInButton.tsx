@@ -19,13 +19,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Loader } from "@/components/ui/loader";
-import { LoggedInButtonProps } from "@/utils/types";
 import { useMutation } from "@tanstack/react-query";
 import { LogOut, User2 } from "lucide-react";
+import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 
-export const LoggedInButton = (props: LoggedInButtonProps) => {
+export type LoggedInButtonProps = {
+  user: Session["user"];
+};
+
+export const LoggedInButton = ({user}: LoggedInButtonProps) => {
   const mutation = useMutation({
     mutationFn: async () => {
       signOut();
@@ -38,15 +42,15 @@ export const LoggedInButton = (props: LoggedInButtonProps) => {
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="sm">
             <Avatar className="mr-2 h-6 w-6">
-              <AvatarFallback>{props.user?.name?.[0]}</AvatarFallback>
-              {props.user.image && (
+              <AvatarFallback>{user?.name?.[0]}</AvatarFallback>
+              {user.image && (
                 <AvatarImage
-                  src={props.user.image}
-                  alt={props.user.name ?? "user picture"}
+                  src={user.image}
+                  alt={user.name ?? "user picture"}
                 />
               )}
             </Avatar>
-            {props.user.name}
+            {user.name}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
