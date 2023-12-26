@@ -2,28 +2,32 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { Typography } from '@/components/ui/typography';
 import Link from 'next/link';
-import { CourseCardProps } from '@/utils/types';
+import { CoursesCard } from './course.query';
 
-export const CourseCard = (props: CourseCardProps) => {
+export type CourseCardProps = {
+  course: CoursesCard;
+};
+
+export const CourseCard = ({course}: CourseCardProps) => {
   return (
-    <Link href={`/courses/${props.course.id}`}>
+    <Link href={`/courses/${course.id}`}>
       <Card className="hover:bg-accent">
         <CardHeader className="flex flex-row gap-3 space-y-0">
           <Avatar className="h-14 w-14 rounded">
-            <AvatarFallback>{props.course.name[0]}</AvatarFallback>
-            {props.course.image ? <AvatarImage src={props.course.image} /> : null}
+            <AvatarFallback>{course.name[0]}</AvatarFallback>
+            {course.image ? <AvatarImage src={course.image} /> : null}
           </Avatar>
           <div className="flex flex-col gap-3">
-            <CardTitle>{props.course.name}</CardTitle>
+            <CardTitle>{course.name}</CardTitle>
             <div className="flex flex-row gap-2">
               <Avatar className="h-8 w-8">
-                <AvatarFallback>{props.course.name[0]}</AvatarFallback>
-                {props.course.creator.image ? (
-                  <AvatarImage src={props.course.creator.image} />
+                <AvatarFallback>{course.name[0]}</AvatarFallback>
+                {course.creator.image ? (
+                  <AvatarImage src={course.creator.image} />
                 ) : null}
               </Avatar>
               <Typography variant="large" className=" text-muted-foreground">
-                {props.course.creator.name}
+                {course.creator.name}
               </Typography>
             </div>
           </div>
