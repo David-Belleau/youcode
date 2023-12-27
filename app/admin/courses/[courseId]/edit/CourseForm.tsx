@@ -36,10 +36,7 @@ export const CourseForm = ({ defaultValue }: CourseFormProps) => {
     <Form
       form={form}
       onSubmit={async (values) => {
-        console.log(values);
-
         if (defaultValue?.id) {
-          console.log('Update course');
           const { data, serverError } = await courseActionEdit({
             courseId: defaultValue.id,
             data: values,
