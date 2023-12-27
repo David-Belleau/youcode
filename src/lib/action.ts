@@ -13,6 +13,7 @@ export const authenticatedAction = createSafeActionClient({
       };
     }
 
+    // default error
     return {
       serverError: 'An unexpected error occurred',
     };
