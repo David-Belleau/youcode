@@ -19,6 +19,7 @@ import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import { TypeOf, ZodSchema } from 'zod';
 
+// type onSubmit with form values
 type FormProps<T extends FieldValues> = Omit<
   React.ComponentProps<'form'>,
   'onSubmit'
@@ -36,6 +37,7 @@ const Form = <T extends FieldValues>({
 }: FormProps<T>) => (
   <FormProvider {...form}>
     <form onSubmit={form.handleSubmit(onSubmit)} {...props} className={className}>
+      {/* disable all form elements automatically  */}
       <fieldset disabled={form.formState.isSubmitting} className={className}>
         {children}
       </fieldset>
@@ -197,6 +199,7 @@ type UseZodFormProps<Z extends ZodSchema> = Exclude<
   schema: Z;
 };
 
+// type useForm return with a schema
 const useZodForm = <Z extends ZodSchema>({
   schema,
   ...formProps
