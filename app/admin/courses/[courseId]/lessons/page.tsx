@@ -6,10 +6,12 @@ import {
 } from "@/components/layout/layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getRequiredAuthSession } from "@/lib/auth";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getCourseLessons } from "./lessons.query";
-import {  } from '@prisma/client';
+import {} from "@prisma/client";
 import { AdminLessonItem } from "./AdminLessonItem";
+import { prisma } from "@/lib/prisma";
+import { SubmitButton } from "@/components/form/SubmitButton";
 
 export default async function CourseLessonsPage({
   params,
@@ -43,6 +45,42 @@ export default async function CourseLessonsPage({
             {course.lessons.map((lesson) => (
               <AdminLessonItem key={lesson.id} lesson={lesson} />
             ))}
+            <form>
+              <SubmitButton
+                size="sm"
+                variant="secondary"
+                className="w-full"
+                formAction={async () => {
+                  "use server";
+
+                  const session = await getRequiredAuthSession();
+
+                  const courseId = params.courseId;
+
+                  // Authorize the user or error
+                  await prisma.course.findFirstOrThrow({
+                    where: {
+                      creatorId: session.user.id,
+                      id: courseId,
+                    },
+                  });
+
+                  const lesson = await prisma.lesson.create({
+                    data: {
+                      name: "Draft Lesson",
+                      rank: "aaaaa",
+                      state: "HIDDEN",
+                      courseId: courseId,
+                      content: "## Default content",
+                    },
+                  });
+
+                  redirect(`/admin/courses/${courseId}/lessons/${lesson.id}`);
+                }}
+              >
+                Create lesson
+              </SubmitButton>
+            </form>
           </CardContent>
         </Card>
       </LayoutContent>
