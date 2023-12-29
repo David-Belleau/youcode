@@ -1,9 +1,9 @@
-'use server';
+"use server";
 
-import { authenticatedAction } from '@/lib/action';
-import { prisma } from '@/lib/prisma';
-import { z } from 'zod';
-import { CourseFormSchema } from './course.schema';
+import { authenticatedAction } from "@/lib/action";
+import { prisma } from "@/lib/prisma";
+import { z } from "zod";
+import { CourseFormSchema } from "./course.schema";
 
 const CourseActionEditProps = z.object({
   courseId: z.string(),
@@ -13,7 +13,7 @@ const CourseActionEditProps = z.object({
 export const courseActionEdit = authenticatedAction(
   CourseActionEditProps,
   async (props, { userId }) => {
-    await prisma.course.update({
+    const course = await prisma.course.update({
       where: {
         id: props.courseId,
         creatorId: userId,
@@ -21,6 +21,26 @@ export const courseActionEdit = authenticatedAction(
       data: props.data,
     });
 
-    return 'Course updated successfully';
+    return {
+      message: "Course updated successfully",
+      course,
+    };
+  }
+);
+
+export const courseActionCreate = authenticatedAction(
+  CourseFormSchema,
+  async (props, { userId }) => {
+    const course = await prisma.course.create({
+      data: {
+        ...props,
+        creatorId: userId,
+      },
+    });
+
+    return {
+      message: "Course created successfully",
+      course,
+    };
   }
 );
