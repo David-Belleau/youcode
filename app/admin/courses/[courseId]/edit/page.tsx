@@ -39,7 +39,7 @@ import {
     return (
       <Layout>
         <LayoutHeader>
-          <LayoutTitle>Edit courses</LayoutTitle>
+          <LayoutTitle>Edit course</LayoutTitle>
         </LayoutHeader>
         <LayoutContent>
           <Card className="flex-[2]">
