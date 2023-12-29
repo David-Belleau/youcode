@@ -3,7 +3,7 @@
 import { authenticatedAction } from '@/lib/action';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
-import { LessonDetailSchema } from './lesson.schema';
+import { LessonDetailSchema } from './form/lesson.schema';
 
 const LessonActionEditDetailsSchema = z.object({
   lessonId: z.string(),
@@ -29,3 +29,4 @@ export const lessonActionEditDetails = authenticatedAction(
     };
   }
 );
+

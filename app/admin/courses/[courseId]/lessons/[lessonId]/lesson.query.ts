@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from "@/lib/prisma";
 
 export const getAdminLesson = async (lessonId: string, userId: string) => {
   return await prisma.lesson.findUnique({
@@ -7,6 +7,13 @@ export const getAdminLesson = async (lessonId: string, userId: string) => {
       course: {
         creatorId: userId,
       },
+    },
+    select: {
+      content: true,
+      id: true,
+      courseId: true,
+      name: true,
+      state: true,
     },
   });
 };
