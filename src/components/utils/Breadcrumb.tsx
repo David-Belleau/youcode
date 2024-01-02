@@ -4,7 +4,7 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
-import { useIsClient } from "../hooks/useIsClient";
+import { useIsClient } from "../../hooks/useIsClient";
 
 export const Breadcrumb = () => {
   const _pathname = usePathname();
