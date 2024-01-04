@@ -23,17 +23,11 @@ import { getAdminCourse } from "./admin-course.query";
 import { Menu } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogFooter,
-} from "@/components/ui/alert-dialog";
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useState } from "react";
 import { revalidatePath } from "next/cache";
 import { Badge } from "@/components/ui/badge";
 
@@ -46,7 +40,7 @@ export default async function CoursePage({
   };
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const page = Number(searchParams.page ?? 1);
+  const page = Number(searchParams.page ?? 0);
   const session = await getRequiredAuthSession();
 
   const course = await getAdminCourse({
@@ -99,7 +93,7 @@ export default async function CoursePage({
                     </TableCell>
                     <TableCell>
                       <Badge variant="secondary">
-                        {user.canceled ? "Canceled" : "Active"}
+                        {user.canceled ? "Cancel" : "Active"}
                       </Badge>
                     </TableCell>
                     <TableCell className="flex flex-row-reverse ">
@@ -149,7 +143,7 @@ export default async function CoursePage({
                                   revalidatePath(`/admin/courses/${courseId}`);
                                 }}
                               >
-                                {user.canceled ? "Activate" : "Cancel"}
+                                {user.canceled ? "Activated" : "Canceled"}
                               </button>
                             </form>
                           </DropdownMenuItem>
