@@ -9,6 +9,7 @@ export const getCourses = async (userId?: string) => {
           users: {
             some: {
               userId,
+              canceledAt: null,
             },
           },
         }
