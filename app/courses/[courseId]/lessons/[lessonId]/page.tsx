@@ -12,6 +12,9 @@ import { notFound } from 'next/navigation';
 import { Lesson } from './Lesson';
 import { LessonsNavigation } from './LessonsNavigation';
 import { getLesson } from './lesson.query';
+import { Suspense } from 'react';
+import { LessonsNavigationSkeleton } from './LessonsNavigationSkeleton';
+import { LessonSkeleton } from './LessonSkeleton';
 
 export default async function LessonPage({
   params,
@@ -21,49 +24,15 @@ export default async function LessonPage({
     courseId: string;
   };
 }) {
-  const session = await getAuthSession();
-  const lesson = await getLesson(params.lessonId, session?.user.id);
-
-  if (!lesson) {
-    notFound();
-  }
-
-  const isAuthorized = await prisma.course.findUnique({
-    where: {
-      id: params.courseId,
-    },
-    select: {
-      users: {
-        where: {
-          userId: session?.user.id ?? '-', // default value if error
-          canceledAt: null,
-        },
-      },
-    },
-  });
-
-  // no lesson displayed and no user logged in
-  if (lesson.state !== 'PUBLIC' && !isAuthorized?.users.length) {
-    return (
-      <Layout>
-        <LayoutHeader>
-          <LayoutTitle>
-            You need to be enrolled in this course to view this lesson.
-          </LayoutTitle>
-        </LayoutHeader>
-        <LayoutContent>
-          <Link href={`/courses/${params.courseId}`} className={buttonVariants()}>
-            Join now
-          </Link>
-        </LayoutContent>
-      </Layout>
-    );
-  }
 
   return (
     <div className="flex items-start gap-4 p-4">
-      <LessonsNavigation courseId={params.courseId} />
-      <Lesson lesson={lesson} />
+      <Suspense fallback={<LessonsNavigationSkeleton />}>
+        <LessonsNavigation courseId={params.courseId} />
+      </Suspense>
+      <Suspense fallback={<LessonSkeleton />}>
+        <Lesson {...params} />
+      </Suspense>
     </div>
   );
 }
