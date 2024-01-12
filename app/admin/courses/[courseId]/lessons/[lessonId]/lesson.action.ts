@@ -50,6 +50,7 @@ export const lessonActionEditContent = authenticatedAction(
       },
     });
 
+    // simulate loading time
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     return {
