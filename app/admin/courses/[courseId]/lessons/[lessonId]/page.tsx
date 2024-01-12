@@ -12,7 +12,6 @@ import { LessonDetail } from "./form/LessonDetailsForm";
 import { getAdminLesson } from "./lesson.query";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { MDXEditor, headingsPlugin } from "@mdxeditor/editor";
 import { MdxEditor } from "./content/MdxEditor"
 
 export default async function CourseLessonsPage({
