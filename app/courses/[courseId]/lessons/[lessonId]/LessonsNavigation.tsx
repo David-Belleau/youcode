@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { getAuthSession, getRequiredAuthSession } from '@/lib/auth';
+import { getRequiredAuthSession } from '@/lib/auth';
 import { getCourse } from '../../course.query';
 import { LessonItem } from './LessonItem';
 
