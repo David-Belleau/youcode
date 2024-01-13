@@ -1,12 +1,12 @@
-import { prisma } from '@/lib/prisma';
-import { Prisma } from '@prisma/client';
+import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 
-export const getLesson = async (lessonId: string, userId = '-') => {
+export const getLesson = async (lessonId: string, userId = "-") => {
   const lesson = await prisma.lesson.findUnique({
     where: {
       id: lessonId,
       state: {
-        not: 'HIDDEN',
+        not: "HIDDEN",
       },
     },
     select: {
@@ -16,7 +16,7 @@ export const getLesson = async (lessonId: string, userId = '-') => {
       state: true,
       users: {
         where: {
-          id: userId,
+          userId: userId,
         },
         select: {
           id: true,
@@ -30,7 +30,12 @@ export const getLesson = async (lessonId: string, userId = '-') => {
     return null;
   }
 
-  return lesson;
+  return {
+    ...lesson,
+    progress: lesson.users[0]?.progress ?? "NOT_STARTED",
+  };
 };
 
-export type LessonType = NonNullable<Prisma.PromiseReturnType<typeof getLesson>>;
+export type LessonType = NonNullable<
+  Prisma.PromiseReturnType<typeof getLesson>
+>;
