@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SubmitButton } from "@/components/form/SubmitButton";
 import { MdxProse } from "./MdxProse";
 import { handleLessonState } from "./lesson.action";
+import { OpenLessonNavigationButton } from "./OpenLessonNavigationButton";
 
 export default async function LessonPage({
   params: { lessonId, courseId },
@@ -52,7 +53,8 @@ export default async function LessonPage({
 
   return (
     <Card className="flex-1">
-      <CardHeader>
+      <CardHeader className="flex-row items-center gap-2 space-y-0">
+        <OpenLessonNavigationButton />
         <CardTitle>{lesson.name}</CardTitle>
       </CardHeader>
       <CardContent className="">
