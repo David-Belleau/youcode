@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-// only client side redndering
+// only client side rendering
 export const useIsClient = (): boolean => {
   const [isClient, setIsClient] = useState(false);
 
