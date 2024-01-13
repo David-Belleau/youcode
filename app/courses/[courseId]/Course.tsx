@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Typography } from "@/components/ui/typography";
 import { CourseType } from "./course.query";
-import { LessonItem } from "./lessons/[lessonId]/LessonItem";
+import { LessonItem } from "./lessons/LessonItem";
 import { MarkdownProse } from "@/features/mdx/MarkdownProse";
 import { getRequiredAuthSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
