@@ -9,7 +9,7 @@ import { getRequiredAuthSession } from "@/lib/auth";
 import { notFound, redirect } from "next/navigation";
 import { getCourseLessons } from "./lessons.query";
 import { prisma } from "@/lib/prisma";
-import { SubmitButton } from "@/components/form/SubmitButton";
+import { SubmitButton } from "@/components/utils/SubmitButton";
 import { AdminLessonSortable } from "./AdminLessonSortable";
 
 export default async function CourseLessonsPage({

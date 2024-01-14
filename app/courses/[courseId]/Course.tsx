@@ -6,7 +6,7 @@ import { LessonItem } from "./lessons/LessonItem";
 import { MarkdownProse } from "@/features/mdx/MarkdownProse";
 import { getRequiredAuthSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { SubmitButton } from "@/components/form/SubmitButton";
+import { SubmitButton } from "@/components/utils/SubmitButton";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
