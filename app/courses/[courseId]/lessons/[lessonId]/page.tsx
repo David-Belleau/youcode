@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import { getLesson } from "./lesson.query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { SubmitButton } from "@/components/form/SubmitButton";
+import { SubmitButton } from "@/components/utils/SubmitButton";
 import { MdxProse } from "./MdxProse";
 import { handleLessonState } from "./lesson.action";
 import { OpenLessonNavigationButton } from "./OpenLessonNavigationButton";
