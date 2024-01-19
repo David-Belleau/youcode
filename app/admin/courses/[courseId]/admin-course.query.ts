@@ -19,6 +19,7 @@ export const getAdminCourse = async ({
       image: true,
       name: true,
       presentation: true,
+      state: true,
       users: {
         take: 5,
         skip: Math.max(0, userPage * 5),

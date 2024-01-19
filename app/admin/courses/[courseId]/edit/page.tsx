@@ -29,6 +29,7 @@ import {
         image: true,
         name: true,
         presentation: true,
+        state: true,
       },
     });
   
