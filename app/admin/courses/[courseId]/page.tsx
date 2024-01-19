@@ -18,7 +18,7 @@ import {
 import { Typography } from "@/components/ui/typography";
 import { getRequiredAuthSession } from "@/lib/auth";
 import Link from "next/link";
-import { PaginationButton } from "../../../../src/features/pagination/PaginationButton";
+import { CoursePaginationButton } from "../../../../src/features/pagination/CoursePaginationButton";
 import { getAdminCourse } from "./admin-course.query";
 import { Menu } from "lucide-react";
 import { prisma } from "@/lib/prisma";
@@ -154,7 +154,7 @@ export default async function CoursePage({
                 ))}
               </TableBody>
             </Table>
-            <PaginationButton
+            <CoursePaginationButton
               baseUrl={`/admin/courses/${course.id}`}
               page={page}
               totalPage={course._count?.users ?? 0 / 5}
@@ -172,6 +172,7 @@ export default async function CoursePage({
             <CardTitle>{course.name}</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-1">
+            <Badge className="w-fit">{course.state}</Badge>
             <Typography>{course._count?.users} users</Typography>
             <Typography>{course._count?.lessons} lessons</Typography>
             <Link
