@@ -3,24 +3,25 @@
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 
-export type PaginationButtonProps = {
+export type CoursePaginationButtonProps = {
   totalPage: number;
   page: number;
   baseUrl: string;
 };
 
-export const PaginationButton = (props: PaginationButtonProps) => {
+export const CoursePaginationButton = ({totalPage, page, baseUrl}: CoursePaginationButtonProps) => {
   const router = useRouter();
   return (
     <div className="flex gap-2">
       <Button
         variant="outline"
         size="sm"
+        disabled={page === 0}
         onClick={() => {
           const searchParams = new URLSearchParams({
-            page: String(props.page - 1),
+            page: String(page - 1),
           });
-          const url = `${props.baseUrl}?${searchParams.toString()}`;
+          const url = `${baseUrl}?${searchParams.toString()}`;
           router.push(url);
         }}
       >
@@ -29,11 +30,12 @@ export const PaginationButton = (props: PaginationButtonProps) => {
       <Button
         variant="outline"
         size="sm"
+        disabled={page === totalPage}
         onClick={() => {
           const searchParams = new URLSearchParams({
-            page: String(props.page + 1),
+            page: String(page + 1),
           });
-          const url = `${props.baseUrl}?${searchParams.toString()}`;
+          const url = `${baseUrl}?${searchParams.toString()}`;
           router.push(url);
         }}
       >
