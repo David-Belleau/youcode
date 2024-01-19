@@ -20,12 +20,6 @@ export const Footer = () => {
             </Typography>
           </div>
           <div className="flex flex-col items-end gap-2 text-sm text-muted-foreground">
-            <Link className="hover:underline" href="/legal/privacy">
-              Privacy
-            </Link>
-            <Link className="hover:underline" href="/legal/cgv">
-              CGV
-            </Link>
             <Link className="hover:underline" href="/courses">
               Courses
             </Link>
