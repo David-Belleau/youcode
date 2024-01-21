@@ -19,7 +19,7 @@ export function Header() {
               as={Link}
               variant="link"
               href="/explorer"
-              className="text-muted-foreground hover:text-foreground"
+              className="hidden text-muted-foreground hover:text-foreground sm:block"
             >
               Explorer
             </Typography>
@@ -27,7 +27,7 @@ export function Header() {
               as={Link}
               variant="link"
               href="/courses"
-              className="text-muted-foreground hover:text-foreground"
+              className="hidden text-muted-foreground hover:text-foreground sm:block"
             >
               Courses
             </Typography>
