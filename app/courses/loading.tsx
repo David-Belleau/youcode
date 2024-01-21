@@ -10,7 +10,7 @@ import {
     return (
       <Layout>
         <LayoutHeader>
-          <LayoutTitle>Your courses</LayoutTitle>
+          <LayoutTitle>My courses</LayoutTitle>
         </LayoutHeader>
         <LayoutContent className="grid grid-cols-1 gap-4 md:grid-cols-2 2xl:grid-cols-3">
           {Array.from({ length: 5 }).map((_, i) => (
