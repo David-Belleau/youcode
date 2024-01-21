@@ -115,7 +115,7 @@ export const CourseForm = ({ defaultValue }: CourseFormProps) => {
               </FormControl>
               <SelectContent>
                 {COURSE_STATE.map((state) => (
-                  <SelectItem value={state} className="capitalize">
+                  <SelectItem value={state} className="capitalize" key={state}>
                     {state}
                   </SelectItem>
                 ))}
