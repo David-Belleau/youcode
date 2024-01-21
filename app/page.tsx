@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <div>
       {/* HERO */}
-      <div className="mx-auto my-8 w-9/12 px-6 lg:my-16 xl:my-24">
+      <div className="mx-auto my-8 w-9/12 lg:my-16 xl:my-24">
         <div className="flex flex-col gap-4 lg:gap-6">
           <h1 className="bg-gradient-to-r from-red-400 to-pink-600 bg-clip-text text-6xl font-extrabold text-transparent">
             Create courses in seconds
