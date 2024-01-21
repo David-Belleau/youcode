@@ -1,40 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# YouCode
 
-## Getting Started
+## Description 
 
-First, run the development server:
+YouCode lets you create online code courses.<br/>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Stack 
+
+- Tailwind CSS
+- Shadcn
+- Typescript
+- Zod
+- Vitest
+- React JS
+- React query 
+- Zustand
+- Next JS
+- Prisma
+- PostgreSQL
+
+# Getting started
+
+## Prerequisites
+
+- PostgreSQL - <a href='https://www.postgresql.org/download'>Download and install PostgreSQL</a>
+
+## Clone the project
+
+```
+git clone https://github.com/David-Belleau/youcode.git 
+cd youcode
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Install the dependencies
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+pnpm install
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Add the environment variables
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Create an .env file in the project root and add this
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+DATABASE_URL="postgresql://yourName:password@localhost:5432/dataBaseName?schema=public"
+```
 
-## Learn More
+"yourName" and "password" are the data you used when installing PostgreSQL. <br/>
+"dataBaseName" is the name of the database you choose.
 
-To learn more about Next.js, take a look at the following resources:
+```
+GITHUB_ID=''
+GITHUB_SECRET=''
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Here's a <a href='https://authjs.dev/getting-started/providers/oauth-tutorial#2-configuring-oauth-provider
+'>tutorial</a> on how to retrieve these IDs from GitHub.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+NEXTAUTH_SECRET='app' // for exemple
+NEXTAUTH_URL='http://localhost:3000' // for exemple
+```
 
-## Deploy on Vercel
+## Start the project
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+pnpm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# License
+
+YouCode is MIT licensed.
