@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { LogOutButton } from "@/features/auth/LogOutButton";
+import { NotAuthenticatedCard } from "@/features/error/NotAuthenticatedCard";
 import { getRequiredAuthSession } from "@/lib/auth";
 import Link from "next/link";
 
@@ -16,7 +17,7 @@ export default async function MyAccount() {
   const session = await getRequiredAuthSession();
 
   if (!session) {
-    throw new Error("No user found !");
+    return <NotAuthenticatedCard />;
   }
 
   return (

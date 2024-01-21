@@ -10,7 +10,7 @@ import {
     return (
       <Layout>
         <LayoutHeader>
-          <LayoutTitle>Your courses</LayoutTitle>
+          <LayoutTitle>My courses</LayoutTitle>
         </LayoutHeader>
         <LayoutContent>
           <CoursePlaceholder />

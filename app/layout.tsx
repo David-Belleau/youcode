@@ -1,6 +1,5 @@
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { TailwindIndicator } from "@/components/utils/TailwindIndicator";
 import { SiteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -39,7 +38,6 @@ export default function RootLayout({
               <div className="flex-1">{children}</div>
               <Footer />
             </div>
-            <TailwindIndicator />
             {modal}
           </Providers>
         </body>

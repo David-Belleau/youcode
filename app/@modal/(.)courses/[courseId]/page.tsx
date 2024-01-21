@@ -49,10 +49,16 @@ const CourseWithData = async ({ courseId }: { courseId: string }) => {
 
   return (
     <>
-      <DialogHeader>
-        <DialogTitle>{course.name}</DialogTitle>
-      </DialogHeader>
-      <Course course={course} userId={session?.user.id} />
+      {session ? (
+        <>
+          <DialogHeader>
+            <DialogTitle>{course.name}</DialogTitle>
+          </DialogHeader>
+          <Course course={course} userId={session?.user.id} />
+        </>
+      ) : (
+        <p>You need to be logged in to view this page</p>
+      )}
     </>
   );
 };
