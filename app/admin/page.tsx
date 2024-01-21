@@ -14,8 +14,16 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { QuickStats } from "./QuickStats";
 import { NewUsersStats } from "./NewUsersStats";
+import { NotAuthenticatedCard } from "@/features/error/NotAuthenticatedCard";
+import { getRequiredAuthSession } from "@/lib/auth";
 
 export default async function MyCoursesPage() {
+  const session = await getRequiredAuthSession();
+
+  if (!session?.user.id) {
+    return <NotAuthenticatedCard />;
+  }
+  
   return (
     <Layout>
       <LayoutHeader>
